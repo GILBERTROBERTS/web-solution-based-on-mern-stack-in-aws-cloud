@@ -36,4 +36,4 @@ If you do not have an AWS account - go back to Project 1 Step 0 to sign in to 
 
 Download and launch MobaxTerm, create a new SSH session with , ‘ubuntu’ as username and your private key (.pem file) like this:
 
-![](./images/GIF1.png)
+![](./images/GIF1.gif)
