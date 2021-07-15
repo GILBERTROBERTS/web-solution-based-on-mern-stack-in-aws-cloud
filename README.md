@@ -237,3 +237,44 @@ module.exports = Todo;
 
 ![](./images/pic11.png)
 
+Now we need to update our routes from the file api.js in ‘routes’ directory to make use of the new model.
+
+n Routes directory, open api.js with vim api.js, delete the code inside with :%d command and paste there code below into it then save and exit
+
+const express = require ('express');
+const router = express.Router();
+const Todo = require('../models/todo');
+
+router.get('/todos', (req, res, next) => {
+
+//this will return all the data, exposing only the id and action field to the client
+Todo.find({}, 'action')
+.then(data => res.json(data))
+.catch(next)
+});
+
+router.post('/todos', (req, res, next) => {
+if(req.body.action){
+Todo.create(req.body)
+.then(data => res.json(data))
+.catch(next)
+}else {
+res.json({
+error: "The input field is empty"
+})
+}
+});
+
+router.delete('/todos/:id', (req, res, next) => {
+Todo.findOneAndDelete({"_id": req.params.id})
+.then(data => res.json(data))
+.catch(next)
+})
+
+module.exports = router;
+
+**MongoDB Database**
+
+We need a database where we will store our data. For this we will make use of **mLab**. mLab provides MongoDB database as a service solution [(DBaaS)](https://en.wikipedia.org/wiki/Cloud_database), so to make life easy, you will need to sign up for a shared clusters free account, which is ideal for our use case.[Sign up here](https://www.mongodb.com/atlas-signup-from-mlab).Follow the sign up process, select **AWS** as the cloud provider, and choose a region near you.
+
+Complete a get started checklist as shown on the image below
