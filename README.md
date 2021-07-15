@@ -138,3 +138,16 @@ If every thing goes well, you should see Server running on port 5000 in your t
 
 ![](./images/pic8.png)
 
+Now we need to open this port in EC2 Security Groups. Refer to Project 1 Step 1 – Installing the Nginx Web Server. There we created an inbound rule to open TCP port 80, you need to do the same for port 5000, like this:
+
+![](./images/pic9.png)
+
+Open up your browser and try to access your server’s Public IP or Public DNS name followed by port 5000:
+- http://PublicIP-or-PublicDNS>:5000
+![](./images/pic10.png)
+
+Quick reminder how to get your server’s Public IP and public DNS name:
+- You can find it in your AWS web console in EC2 details
+- Run curl -s http://169.254.169.254/latest/meta-data/public-ipv4 for Public IP address or curl -s http://169.254.169.254/latest/meta-data/public-hostname for Public DNS name.
+
+
